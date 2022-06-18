@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="card border-info mb-3">
+        <div class="card-header text-primary">
+            <h2 class="text-center">
+                {{titulo}}
+            </h2>
+
+        </div>
+        <div class="card-body text-primary table-responsive">
+            <form>
+                <div class="mb-3">
+                    <label for="nombre">
+                        Nombre del Producto
+                    </label>
+                    <input type="text" 
+                    class="form-control" 
+                    name="nombre" 
+                    required
+                    [(ngModel)]="producto.nombreProducto">
+                </div>
+
+                <div class="mb-3">
+                    <label for="descripcion">Descripcion del Producto</label>
+                    <input type="text" 
+                    class="form-control" 
+                    name="descripcion" 
+                    required
+                    [(ngModel)]="producto.descripcionProducto">
+                </div>
+
+                <div class="mb-3">
+                    <label for="precio">Precio del Producto</label>
+                    <input type="number" 
+                    class="form-control" 
+                    name="precio" 
+                    required
+                    [(ngModel)]="producto.precioProducto">
+                </div>
+
+                <div class="mb-3">
+                    <label for="existenciaProducto">Existencia del Producto</label>
+                    <input type="number" 
+                    class="form-control" 
+                    name="existencia" 
+                    required
+                    [(ngModel)]="producto.existencia">
+                </div>
+
+                <div class="mb-3">
+                    <label for="idCategoria">Categoría</label>                   
+                    <select name="idCategoria" id="idCategoria" [(ngModel)]="producto.idCategoria">
+                        <option *ngFor="let categoria of listadoDeCategorias" [ngValue]="categoria.idCategoria">{{categoria.nombreCategoria}}</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <button class="btn btn-outline-primary form-control"
+                    (click)="almacenarProducto(producto)">
+                        Ingresar producto
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>

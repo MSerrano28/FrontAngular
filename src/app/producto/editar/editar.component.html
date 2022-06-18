@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="card border-info mb-3">
+        <div class="card-header text-primary">
+            <h2 class="text-center">
+                Editar Producto
+            </h2>
+
+        </div>
+        <div class="card-body text-primary table-responsive">
+            <form>
+                <div class="mb-3">
+                    <label for="nombre">
+                        Nombre del Producto
+                    </label>
+                    <input type="text" 
+                    class="form-control" 
+                    name="nombre" 
+                    required
+                    [value]="producto.nombreProducto"
+                    [(ngModel)]="producto.nombreProducto">
+                </div>
+
+                <div class="mb-3">
+                    <label for="descripcion">Descripcion del Producto</label>
+                    <input type="text" 
+                    class="form-control" 
+                    name="descripcion" 
+                    required
+                    [value]="producto.descripcionProducto"
+                    [(ngModel)]="producto.descripcionProducto">
+                </div>
+
+                <div class="mb-3">
+                    <label for="precio">Precio Producto</label>
+                    <input type="number" 
+                    class="form-control" 
+                    name="precio" 
+                    required
+                    [value]="producto.precioProducto"
+                    [(ngModel)]="producto.precioProducto">
+                </div>
+
+                <div class="mb-3">
+                    <label for="existencia">Existencia</label>
+                    <input type="number" 
+                    class="form-control" 
+                    name="existencia" 
+                    required
+                    [value]="producto.existencia"
+                    [(ngModel)]="producto.existencia">
+                </div>
+
+                <div class="mb-3">
+                    <label for="idCategoria">idCategoria</label>
+                    <input type="numb" 
+                    class="form-control" 
+                    name="idCategoria" 
+                    required
+                    [value]="producto.idCategoria"
+                    [(ngModel)]="producto.idCategoria">
+                </div>
+
+                <div class="mb-3">
+                    <button class="btn btn-outline-primary form-control"
+                    (click)="actualizar(producto)">
+                        Editar producto
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
