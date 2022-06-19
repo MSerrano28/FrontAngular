@@ -48,7 +48,7 @@
 
                 <div class="mb-3">
                     <label for="idCategoria">Categoría</label>                   
-                    <select name="idCategoria" id="idCategoria" [(ngModel)]="producto.idCategoria">
+                    <select name="idCategoria" id="idCategoria" [(ngModel)]="producto.idCategoria.idCategoria">
                         <option *ngFor="let categoria of listadoDeCategorias" [ngValue]="categoria.idCategoria">{{categoria.nombreCategoria}}</option>
                     </select>
                 </div>

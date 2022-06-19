@@ -8,14 +8,14 @@ import { Producto, ProductoUpdate } from '../modelo/producto';
   providedIn: 'root'
 })
 export class ProductoService {
-  private endPoint: string = "http://localhost:8181/api/producto";// direccion de la api/
+  private endPoint: string = "https://categoriaproducto.herokuapp.com/api/producto";// direccion de la api/
   constructor(private http : HttpClient) { }
   private httpHeaders = new HttpHeaders({'ContentType':'application/json'})
 
   listadoProducto() : Observable<Producto[]>{
     return this.http.get<Producto[]>(`${this.endPoint}/get-all`).pipe(map((response) => response as Producto[]));
   }
-
+ 
   getProducto(): Observable<Producto[]> {
     return this.http.get(this.endPoint).pipe(
       map(response => response as Producto[])
@@ -35,7 +35,7 @@ export class ProductoService {
 
   crearProducto(producto : Producto) : Observable<Producto> {
     return this.http.post<Producto> (
-      `${this.endPoint}/create/${producto.idCategoria}`,
+      `${this.endPoint}/create/${producto.idCategoria.idCategoria}`,
       producto,
       {headers : this.httpHeaders}
     )

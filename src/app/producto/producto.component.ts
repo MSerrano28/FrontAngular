@@ -21,9 +21,13 @@ export class ProductoComponent implements OnInit {
     this.getCategorias()
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.producto.idCategoria = new Categoria(); 
+  }
 
   almacenarProducto(producto: Producto): void {
+    console.log(producto)
+    producto.idCategoria=this.listadoDeCategorias.filter(cat=>cat.idCategoria==producto.idCategoria.idCategoria)[0];
     this.service.crearProducto(producto).subscribe(
       (res) => {
         Swal.fire(
@@ -33,15 +37,17 @@ export class ProductoComponent implements OnInit {
         );
       },
       (err) => {
-        for (let i = 0; i < err.error.errores.length; i++) {
-          this.msg += err.error.errores[i] + '\n';
+        console.log(err)
+        if(err.error?.errores){
+          for (let i = 0; i < err.error.errores.length; i++) {
+            this.msg += err.error.errores[i] + '\n';
+          }
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: this.msg,
+          });
         }
-
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: this.msg,
-        });
       }
     );
   }

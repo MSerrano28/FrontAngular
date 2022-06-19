@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Producto, ProductoUpdate } from 'src/app/modelo/producto';
 import { ProductoService } from 'src/app/servicio/producto.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 @Component({
   selector: 'app-editar',
@@ -10,31 +9,22 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./editar.component.css'],
 })
 export class ProductoEditarComponent implements OnInit {
-  titulo: string = 'Listado de categorías';
-  listadoDeCategorias: Producto[]= [
-
-    {
-      idProducto: 1,
-      nombreProducto : 'Servidor Cargando',
-      descripcionProducto: 'Espere..',
-      precioProducto: 5,
-      existencia: 0,
-      fechaCreacion: new Date(12,12,2001),
-      idCategoria: 1
-    }
-   
-   
-  ];
+  titulo: string = 'Listado de categorías';  
   producto: Producto = new Producto();
+  productoUpdate : Producto = new Producto();
   productoupdate: ProductoUpdate = new ProductoUpdate();
 
-  constructor(private servicio : ProductoService) { }
+  constructor(private servicio : ProductoService, private route : ActivatedRoute ) { }
   numero : number = 0;
   idProductoProducto  : number = 0;
 
   ngOnInit(): void {
-    this.servicio.getProducto().subscribe(
-      (Productos) => this.listadoDeCategorias = Productos
+    let id = Number(this.route.snapshot.paramMap.get('id'))
+    this.servicio.leerProducto(id).subscribe(
+      (producto) => {
+        this.producto = (producto as any).categoria        
+        this.productoUpdate = this.producto  
+      }
     );
   }
   actualizar(producto: Producto): void {

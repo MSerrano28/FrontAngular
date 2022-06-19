@@ -8,7 +8,7 @@ import { Categoria, CategoriaUpdate } from '../modelo/categoria';
   providedIn: 'root'
 })
 export class CategoriaService {
-  private endPoint: string = "http://localhost:8181/api/categoria";// direccion de la api/
+  private endPoint: string = "https://categoriaproducto.herokuapp.com/api/categoria";// direccion de la api/
   constructor(private http : HttpClient) { }
   private httpHeaders = new HttpHeaders({'ContentType':'application/json'})
 

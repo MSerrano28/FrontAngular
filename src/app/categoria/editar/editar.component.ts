@@ -22,8 +22,7 @@ export class EditarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let id = Number(this.route.snapshot.paramMap.get('id'));
-    console.log(id)
+    let id = Number(this.route.snapshot.paramMap.get('id'));    
     this.getCategoria(id);
   }
 
@@ -36,13 +35,22 @@ export class EditarComponent implements OnInit {
           'La categoria se Actualizó',
           'success'
         );
+      },err=>{
+        if(err.status==400){
+          console.log(err )
+          Swal.fire(
+            'Haz superado el limite de caracteres',
+            'No se ha podido actualizar',
+            'error'
+          )
+        }
       });
   }
 
   getCategoria (id : number) : void {
     this.servicio.leerCategoria(id).subscribe( 
       categoria => {
-        this.categoria = categoria  
+        this.categoria = (categoria as any).categoria
         this.categoriaUpdate = this.categoria      
         console.log(this.categoriaUpdate);
     }); 
